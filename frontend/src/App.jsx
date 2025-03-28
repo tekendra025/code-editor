@@ -98,6 +98,13 @@ const handleLanguageChange = (e) =>{
   socket.emit("languageChange", {roomId, language: newLanguage});
 };
 
+  //to handle key press/enter
+const handlePress = (e) =>{
+  if (e.key === 'Enter') {
+    joinRoom();
+  }
+}
+
   if (!joined) {
     return (
     <div className="join-container">
@@ -108,6 +115,7 @@ const handleLanguageChange = (e) =>{
          placeholder="Room Id "
          value={roomId}
          onChange={(e)=>setRoomId(e.target.value)}
+          onKeyUp = {handlePress}
          />
 
         <input 
@@ -115,6 +123,7 @@ const handleLanguageChange = (e) =>{
          placeholder="Your Name "
          value={userName}
          onChange={(e)=>setUserName(e.target.value)}
+           onKeyUp = {handlePress}
          />
 
          <button onClick={joinRoom}>Join Room</button>
